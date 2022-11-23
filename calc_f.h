@@ -8,6 +8,6 @@ int getE();
 int getT();
 int getP();
 int getN();
-
+int getD();
 
 #endif

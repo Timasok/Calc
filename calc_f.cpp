@@ -1,5 +1,5 @@
 #include "assert.h"
-
+#include "math.h"
 #include "calc_f.h"
 
 static const char * input;
@@ -11,6 +11,25 @@ int getG(const char *str)
     assert(*input == '\0');
 
     return val;
+}
+
+int getD()
+{
+    int val = getP();
+    while (*input == '^')
+    {
+        int op = *input;
+        input++;
+        
+        int val2 = getP();
+        if (op == '^')
+        {
+            val = pow(val, val2);
+        }
+    }
+
+    return val;
+
 }
 
 int getE()
@@ -38,12 +57,12 @@ int getE()
 
 int getT()
 {
-    int val = getP();
+    int val = getD();
     while (*input == '*' || *input == '/')
     {
         int op = *input;
         input++;
-        int val2 = getP();
+        int val2 = getD();
 
         if  (op == '*')
         {
